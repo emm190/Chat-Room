@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}CREATE A NEW CHAT ROOM{% endblock %}
+
+{% block body %}
+
+<h1>Welcome to the chat creation page!</h1>
+{% if error %}<div class="error"><h2> Whoops! Something went wrong: </h2> {{ error }}</div>{% endif %}
+
+    <form action="newChat" method="post">
+      <dl>
+        <dt>Chat Room Name:
+        <dd><input type="text" size="30" name="chatName">
+        <dd><input type="submit" value="Share">
+      </dl>
+    </form>
+ 
+  
+  
+  <a href="{{ url_for('homepage') }}">Click here to see all chats!</a>
+
+
+{% endblock %}

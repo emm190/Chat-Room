@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Chats{% endblock %}
+    
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+	</head>
+	<body>
+		<h1>{{ chatRoomName }}:</h1>
+		<table id="messages">
+			{% for i in messages %}
+				<tr>
+					{% for j in i %}
+						<td> {{ j }}</td>
+					{% endfor %}
+				</tr>
+			{% else %}
+				<tr><td></td></tr>
+			{% endfor %}
+		</table>
+		<h3> Add new message: </h3>
+		<form name="theForm" method="POST">
+			<input type="text" id="theMsg" name="theMsg" value="" />
+			<input type="hidden" id="chatName" name="chatName" value="{{chatRoomName}}" />
+			<input type="button" id="theButton" value="enter" />
+		</form>
+
+		<a href="{{ url_for('homepage') }}">See all chat rooms</a>
+	</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+<!doctype html>
+
+
+<div class="header">
+    <h1> Emily's Chat Room Site </h1> 
+</div> 
+
+<title>{% block title %}Welcome g.user {% endblock %} | Emily's site</title>
+
+<div class="navigation">
+    {% if 'username' in session %}
+      <a href="{{ url_for('logout') }}">Sign out {{ session.get('username') }}</a> 
+    {% else %}
+      <a href="{{ url_for('register') }}">Register</a> |
+      <a href="{{ url_for('login') }}">Sign In</a>
+    {% endif %}
+    </div>
+    {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class="flashes">
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  {% block body %}{% endblock %}
+  </div>
+  <div class="footer">
+    Emily Miller's Chat Room Web App for CS 1520 Project 3
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+    {% block title %}HOMEPAGE{% endblock %}
+    
+    {% block body %}
+    <h1> All Chat Rooms (click to join one): </h1>
+    {% if error %}<div class="error"><h2> Whoops! Something went wrong: </h2> {{ error }}</div>{% endif %}
+   
+    {% for i,val in allChatRooms.items() %}
+    <a href="/showChatRoom/{{i}}"> {{ i }} </a>
+    <ul>
+        {% for j in val.items() %}
+            {% set startString = "('Creator: ', '" %}
+            {% set endString = "')" %}
+            {% set testString = startString + session['username'] + endString %}
+            {% if j|string == testString|string %}
+                <li> <a href="/deleteChatRoom/{{i}}"> Delete Chat Room: {{ i }} </a> </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h2> No one has created a chat room yet. Make a new one! </h2>
+    {% endfor %}
+    
+    <a href="{{ url_for('newChat') }}">Click here to create a new chat room!</a>
+    {% endblock %}
